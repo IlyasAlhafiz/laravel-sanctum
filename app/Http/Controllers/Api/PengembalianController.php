@@ -24,7 +24,7 @@ class PengembalianController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'peminjaman_id' => 'required|exists:peminjaman,id',
+            'peminjaman_id' => 'required|exists:peminjamen,id',
             'tanggal_pengembalian' => 'required|date'
         ]);
 
@@ -55,7 +55,7 @@ class PengembalianController extends Controller
 
     public function show($id)
     {
-        $pengembalian = Pengembalian::with('peminjaman')->find($id);
+        $pengembalian = Pengembalian::with('peminjamen')->find($id);
 
         if (!$pengembalian) {
             return response()->json([
@@ -74,7 +74,7 @@ class PengembalianController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'peminjaman_id' => 'required|exists:peminjaman,id',
+            'peminjaman_id' => 'required|exists:peminjamen,id',
             'tanggal_pengembalian' => 'required|date'
         ]);
 

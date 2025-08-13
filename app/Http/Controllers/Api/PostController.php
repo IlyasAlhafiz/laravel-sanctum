@@ -55,7 +55,7 @@ class PostController extends Controller
         $post->slug = Str::slug($request->title, '-');
         $post->content = $request->content;
         $post->status = $request->status;
-
+        //image
         if ($request->hasFile('foto')) {
             $path = $request->file('foto')->store('posts', 'public');
             $post->foto = $path;
@@ -80,7 +80,7 @@ class PostController extends Controller
         $post = Post::find($id);
         if (! $post) {
             return response()->json([
-                'message' => 'Data Not Found',
+                'message' => 'Data NOt Found',
             ], 404);
         }
         return response()->json([
@@ -114,7 +114,7 @@ class PostController extends Controller
         $post->slug = Str::slug($request->title, '-');
         $post->content = $request->content;
         $post->status = $request->status;
-
+        //image
         if($request->hasFile('foto')){
             if($post->foto && Storage::disk('public')->exists($post->foto)){
                 Storage::disk('public')->delete($post->foto);
@@ -146,6 +146,7 @@ class PostController extends Controller
         if ($post->foto && Storage::disk('public')->exists($post->foto)) {
             Storage::disk('public')->delete($post->foto);
         }
+
 
         $post->delete();
         return response()->json([
