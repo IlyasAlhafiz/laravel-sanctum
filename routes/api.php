@@ -18,10 +18,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 });
 
-
-
-// ... baris kode post
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
 
@@ -29,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     ->except(['create', 'edit']);
 
     Route::resource('/kategoris', \App\Http\Controllers\Api\KategoriController::class)
-    ->except(['create', 'edit']);// tambahkan ini
+    ->except(['create', 'edit']);
 
     Route::resource('/bukus', \App\Http\Controllers\Api\BukuController::class)
     ->except(['create', 'edit']);
